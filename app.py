@@ -7,7 +7,18 @@ import seaborn as sns
 import plotly.figure_factory as ff
 
 
-df = pd.read_csv('athlete_events.csv')
+import gdown
+
+# Your Google Drive file ID
+file_id = "17nFt-eUO5ARCA1MX5Bg2Ip2fKuHwnsM_"
+url = f"https://drive.google.com/uc?id={file_id}"
+
+# Download to a local file
+output = "myfile.csv"
+gdown.download(url, output, quiet=False)
+
+# Now load with pandas
+df = pd.read_csv(output)
 region_df = pd.read_csv('noc_regions.csv')
 
 df = preprocessor.preprocess(df,region_df)  # Load data
